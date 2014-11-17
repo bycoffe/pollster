@@ -8,7 +8,7 @@ A Go wrapper for the [Pollster API](http://elections.huffingtonpost.com/pollster
 
 ## Usage
 
-    import "pollster"
+    import "github.com/bycoffe/pollster"
 
 will import the package into your project.
 
