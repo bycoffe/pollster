@@ -18,7 +18,7 @@ A map of parameters is required for both the `Charts` and `Polls` functions.
 
 `Charts` returns a list of `Chart` structs. To list all charts:
 
-    charts := Charts(map[string]string{})
+    charts := pollster.Charts(map[string]string{})
 
 To access the chart for the 2014 Maryland governor's race:
 
@@ -26,7 +26,7 @@ To access the chart for the 2014 Maryland governor's race:
       "state": "MD",
       "topic": "2014-governor",
     }
-    charts := Charts(params)
+    charts := pollster.Charts(params)
 
 Once you have access to a `Chart`, you can get a list of Pollster's estimates by date:
 
@@ -34,7 +34,7 @@ Once you have access to a `Chart`, you can get a list of Pollster's estimates by
       "state": "MD",
       "topic": "2014-governor",
     }
-    charts := Charts(params)
+    charts := pollster.Charts(params)
     chart := charts[0]
     for _, estimate := range chart.EstimatesByDate() {
       fmt.Printf("%s\n", estimate.Date)
@@ -45,7 +45,7 @@ Once you have access to a `Chart`, you can get a list of Pollster's estimates by
 
 Accessing polls works in a similar way. To list all polls (paginated in pages of 10):
 
-    polls := Polls(map[string]string{})
+    polls := pollster.Polls(map[string]string{})
 
 To access the polls for the 2014 Colorado Senate race:
 
@@ -53,7 +53,7 @@ To access the polls for the 2014 Colorado Senate race:
       "state": "CO",
       "topic": "2014-senate",
     }
-    polls := Polls(params)
+    polls := pollster.Polls(params)
     for _, poll := range polls {
       fmt.Printf("\n%s: %s\n", poll.Pollster, poll.Method)
       for _, question := range poll.Questions {
