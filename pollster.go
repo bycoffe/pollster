@@ -80,6 +80,8 @@ type Poll struct {
 	} `json:"questions"`
 }
 
+var baseUrl = "http://elections.huffingtonpost.com/pollster/api/"
+
 func handleError(err error) bool {
 	if err != nil {
 		fmt.Println(err)
@@ -105,7 +107,7 @@ func buildUrl(url string, params map[string]string) string {
 }
 
 func Charts(params map[string]string) []Chart {
-	url := buildUrl("http://elections.huffingtonpost.com/pollster/api/charts?", params)
+	url := buildUrl(baseUrl+"charts?", params)
 	body := getJson(url)
 	var charts []Chart
 	json.Unmarshal(body, &charts)
@@ -113,13 +115,13 @@ func Charts(params map[string]string) []Chart {
 }
 
 func (chart Chart) EstimatesByDate() DateEstimates {
-	body := getJson(fmt.Sprintf("http://elections.huffingtonpost.com/pollster/api/charts/%s", chart.Slug))
+	body := getJson(fmt.Sprintf(baseUrl+"charts/%s", chart.Slug))
 	json.Unmarshal(body, &chart)
 	return chart.DateEstimates
 }
 
 func Polls(params map[string]string) []Poll {
-	url := buildUrl("http://elections.huffingtonpost.com/pollster/api/polls.json?", params)
+	url := buildUrl(baseUrl+"polls?", params)
 	body := getJson(url)
 	var polls []Poll
 	json.Unmarshal(body, &polls)
