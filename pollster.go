@@ -80,7 +80,7 @@ type Poll struct {
 	} `json:"questions"`
 }
 
-var baseUrl = "http://elections.huffingtonpost.com/pollster/api/"
+const baseUrl = "http://elections.huffingtonpost.com/pollster/api/"
 
 func handleError(err error) bool {
 	if err != nil {
